@@ -6,7 +6,6 @@ __license__ = "MIT"
 __version__ = "1.0"
 __email__ = "ilaria.carlomagno@elettra.eu"
 
-
 import glob
 import json
 import numpy as np
@@ -35,9 +34,10 @@ def extract_json_xrf(file_path):
             out_file.write('Elem['+str(i+1)+']\t')
         out_file.write('\n')            
         
+        col = 0
         for row in range(chan):
+            out_file.write(str(np.sum(xrf_spectrum[row], axis=0))+'\t')
             for col in range(elem):
-                out_file.write(str(np.sum(xrf_spectrum[row], axis=0))+'\t')
                 out_file.write(str(xrf_spectrum[row][col])+'\t')
             out_file.write('\n')
         out_file.close()
